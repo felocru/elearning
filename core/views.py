@@ -13,7 +13,7 @@ class CourseViewSet(viewsets.ModelViewSet):
 class LessonViewSet(viewsets.ModelViewSet):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    filter_backends = [LessonViewSet]
+    filter_backends = [LessonFilterBackend]
 
 
 class QuestionViewSet(viewsets.ModelViewSet):

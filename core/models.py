@@ -120,8 +120,10 @@ class Teacher(User):
 class Course(models.Model):
     name = models.CharField(_("Nombre"), max_length=50)
     teacher = models.ForeignKey("core.Teacher", verbose_name=_("Profesor"), on_delete=models.CASCADE)
-    depends_on = models.ForeignKey("core.Course", verbose_name=_("Depende de"), on_delete=models.CASCADE, help="El curso depende de otro curso para ser cursado ")
-    created_at = models.DateTimeField(_("Fecha de creación"), auto_now=False, auto_now_add=True)
+    depends_on = models.ForeignKey("core.Course", verbose_name=_(
+        "Depende de"), on_delete=models.CASCADE, help_text="El curso depende de otro curso para ser cursado ")
+    created_at = models.DateTimeField(
+        _("Fecha de creación"), auto_now=False, auto_now_add=True)
     update_at = models.DateTimeField(_("Fecha de actualización"), auto_now=False, auto_now_add=True)
     
 
@@ -141,7 +143,8 @@ class Lesson(models.Model):
 
     name = models.CharField(_("Nombre"), max_length=50)
     score_total = models.PositiveSmallIntegerField(_("Puntuación"), help_text="Puntuación a mínima a calificar")
-    depends_on = models.ForeignKey("core.Course", verbose_name=_("Depende de"), on_delete=models.CASCADE, help="La lección depende de otra lección")
+    depends_on = models.ForeignKey("core.Lesson", verbose_name=_(
+        "Depende de"), on_delete=models.CASCADE, help_text="La lección depende de otra lección")
     course = models.ForeignKey("core.Course", verbose_name=_("Curso"), on_delete=models.CASCADE)
 
     class Meta:
@@ -166,7 +169,7 @@ class Question(models.Model):
 
     name = models.CharField(_("Pregunta"), max_length=50)
     score = models.PositiveSmallIntegerField(_("Score"))
-    type_ = models.CharField(_("Tipo"), max_length=50, choices=TYPE)
+    tipo = models.CharField(_("Tipo"), max_length=50, choices=TYPE)
     answers = models.ManyToManyField("core.Answer", verbose_name=_(
         "Respuestas"), related_name='questions', help_text="Conjunto de respuestas")
 

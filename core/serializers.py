@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_flex_fields import FlexFieldsModelSerializer
-from core.models import Course, Question, Lesson
+from core.models import Course, Question, Lesson, Answer
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -10,7 +10,7 @@ class CourseSerializer(serializers.ModelSerializer):
 
 class AnswerSerializer(FlexFieldsModelSerializer):
     class Meta:
-        model = AnswerSerializer
+        model = Answer
         fields = '__all__'
 
 class QuestionSerializer(serializers.ModelSerializer):

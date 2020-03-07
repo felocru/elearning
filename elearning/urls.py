@@ -17,13 +17,16 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 from rest_framework import routers
+from core.views import CourseViewSet, LessonViewSet, QuestionViewSet
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
 router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
+router.register(r'courses', CourseViewSet)
+router.register(r'lessons', LessonViewSet)
+router.register(r'questions', QuestionViewSet)
 
 
 urlpatterns += [
